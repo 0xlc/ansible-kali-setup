@@ -1,4 +1,6 @@
 ---
+- import_tasks: packages.yml
+
 - name: main.yml | find laptop model number
   shell: dmidecode | grep -A 9 "System Information" | grep Version
   register: laptop_version
@@ -11,7 +13,7 @@
 - import_tasks: x1.yml
   when: 'ThinkPad X1 Carbon 6th' in laptop_version
 
-- name: main.yml | chmod 777 /opt
+- name: main.yml | chown luca:luca /opt
   file:
     path: /opt
     owner: luca
