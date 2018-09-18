@@ -1,0 +1,26 @@
+---
+- name: main.yml | find laptop model number
+  shell: dmidecode | grep -A 9 "System Information" | grep Version
+  register: laptop_version
+
+- name: main.yml | create luca user
+  user:
+    name: luca
+    group: sudo
+
+- import_tasks: x1.yml
+  when: 'ThinkPad X1 Carbon 6th' in laptop_version
+
+- name: main.yml | chmod 777 /opt
+  file:
+    path: /opt
+    owner: luca
+    group: luca
+
+- import_tasks: opt.yml
+  become: yes
+  become_user: luca
+
+- import_tasks: zsh.yml
+  become: yes
+  become_user: luca

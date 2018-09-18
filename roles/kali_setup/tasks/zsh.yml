@@ -1,0 +1,54 @@
+---
+- name: zsh.yml | installing oh-my-zsh
+  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+- name: zsh.yml | cloning zsh-completions
+  git:
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-completions
+    repo: https://github.com/zsh-users/zsh-completions
+
+- name: zsh.yml | installing zsh-completions
+  shell: autoload -U compinit && compinit
+
+- name: zsh.yml | installing zsh-autosuggestions
+  git: 
+    repo: https://github.com/zsh-users/zsh-autosuggestions
+    dest: ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+- name: zsh.yml | installing fzf-zsh
+  git:
+    dest: ~/.fzf
+    repo: https://github.com/junegunn/fzf.git
+
+- name: zsh.yml | installing fzf-zsh 2
+  shell: ~/.fzf/install
+
+- name: zsh.yml | installing base16-shell
+  git:
+    dest: ~/.config/base16-shell
+    repo: https://github.com/chriskempson/base16-shell.git
+
+- name: zsh.yml | copy custom base16 theme
+  copy:
+    src: base16-hopscotch.sh
+    dest: ~/.config/base16-shell/scripts
+
+- name: zsh.yml | copy luca.zsh-theme
+  copy:
+    src: luca.zsh-theme
+    dest: ~/.oh-my-zsh/themes
+
+- name: zsh.yml | copy .zshrc
+  copy:
+    src: .zshrc
+    dest: ~/.zshrc
+
+- name: zsh.yml | copy .vimrc
+  copy:
+    src: .vimrc
+    dest: ~/.vimrc
+
+- name: zsh.yml | update shell for luca
+  user:
+    name: luca
+    shell: /bin/zsh

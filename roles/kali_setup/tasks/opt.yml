@@ -1,0 +1,7 @@
+---
+- name: opt.yml | install opt repository
+  git:
+    repo: '{{ item }}'
+    dest: /opt
+    update: yes
+  with_items: "{{ opt_repo }}"
