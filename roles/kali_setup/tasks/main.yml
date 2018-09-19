@@ -4,14 +4,23 @@
 - name: main.yml | find laptop model number
   shell: dmidecode | grep -A 9 "System Information" | grep Version
   register: laptop_version
+  changed_when: false
+
+- name: main.yml | create "{{ user }}" group
+  group:
+    name: "{{ user }}"
+    gid: 1000  
 
 - name: main.yml | create "{{ user }}" user
   user:
     name: "{{ user }}"
-    group: sudo
+    uid: 1000
+    shell: /bin/bash
+    group: "{{ user }}"
+    groups: sudo
 
 - import_tasks: x1.yml
-  when: 'ThinkPad X1 Carbon 6th' in laptop_version
+  when: '"ThinkPad X1 Carbon 6th" in laptop_version.stdout'
 
 - name: main.yml | chown "{{ user }}:{{ user }}" /opt
   file:

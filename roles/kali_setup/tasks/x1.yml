@@ -1,20 +1,22 @@
 ---
 - name: x1.yml | install requirements
-	apt:
-		name: "{{ item }}"
-		update_cache: yes
-	with_items:
-		- virtualenv
-		- build-essential
-		- python3-dev
-		- libdbus-glib-1-dev
-		- libgirepository1.0-dev
-		- libcairo2-dev
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - virtualenv
+    - build-essential
+    - python3-dev
+    - libdbus-glib-1-dev
+    - libgirepository1.0-dev
+    - libcairo2-dev
 
 - name: x1.yml | clone lenovo fix repo for x1 carbon
-	git:
-		repo: https://github.com/erpalma/lenovo-throttling-fix.git
-		dest: /opt
+  git:
+    repo: https://github.com/erpalma/lenovo-throttling-fix.git
+    dest: /opt/
+    force: yes
+    clone: yes
 
 - name: x1.yml | install lenovo fix
   shell: cd /opt/lenovo-throttling-fix; ./install

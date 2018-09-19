@@ -6,9 +6,6 @@ packages:
   - terminator
   - chromium
   - zsh
-  - dropbox
-  - nemo
-  - tor-browser
   - clipit
 
 opt_repos:
@@ -22,4 +19,3 @@ opt_repos:
   - https://github.com/GDSSecurity/Windows-Exploit-Suggester.git
   - https://github.com/nidem/kerberoast.git
   
-
