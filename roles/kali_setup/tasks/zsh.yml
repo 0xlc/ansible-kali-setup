@@ -13,6 +13,8 @@
   git:
     dest: ~/.fzf
     repo: https://github.com/junegunn/fzf.git
+    force: yes
+    update: yes
 
 - name: zsh.yml | installing fzf-zsh 2
   shell: ~/.fzf/install
@@ -21,7 +23,9 @@
   git:
     dest: ~/.config/base16-shell
     repo: https://github.com/chriskempson/base16-shell.git
-
+    update: yes
+    force: yes
+    
 - name: zsh.yml | copy custom base16 theme
   copy:
     src: base16-luca.sh
