@@ -1,0 +1,9 @@
+---
+- name: metasploit.yml | enabling and starting postgresql
+  systemd:
+    state: restarted
+    name: postgresql
+    enabled: yes
+
+- name: metasploit.yml | msfdb init
+  command: msfdb init 

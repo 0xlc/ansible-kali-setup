@@ -5,24 +5,26 @@
   shell: dmidecode | grep -A 9 "System Information" | grep Version
   register: laptop_version
 
-- name: main.yml | create luca user
+- name: main.yml | create "{{ user }}" user
   user:
-    name: luca
+    name: "{{ user }}"
     group: sudo
 
 - import_tasks: x1.yml
   when: 'ThinkPad X1 Carbon 6th' in laptop_version
 
-- name: main.yml | chown luca:luca /opt
+- name: main.yml | chown "{{ user }}:{{ user }}" /opt
   file:
     path: /opt
-    owner: luca
-    group: luca
+    owner: "{{ user }}"
+    group: "{{ user }}"
 
 - import_tasks: opt.yml
   become: yes
-  become_user: luca
+  become_user: "{{ user }}"
 
 - import_tasks: zsh.yml
   become: yes
-  become_user: luca
+  become_user: "{{ user }}"
+
+- import_tasks: metasploit.yml

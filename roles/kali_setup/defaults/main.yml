@@ -1,5 +1,7 @@
 ---
 # defaults file for kali_setup
+user: luca
+
 packages:
   - terminator
   - chromium
@@ -9,7 +11,7 @@ packages:
   - tor-browser
   - clipit
 
-opt_repo:
+opt_repos:
   - https://github.com/glv2/bruteforce-salted-openssl.git
   - https://github.com/maurosoria/dirsearch.git
   - https://github.com/trickster0/Enyx.git

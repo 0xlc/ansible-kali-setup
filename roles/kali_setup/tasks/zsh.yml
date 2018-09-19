@@ -12,8 +12,8 @@
 
 - name: zsh.yml | installing zsh-autosuggestions
   git: 
+    dest: ~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     repo: https://github.com/zsh-users/zsh-autosuggestions
-    dest: ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 - name: zsh.yml | installing fzf-zsh
   git:
@@ -30,7 +30,7 @@
 
 - name: zsh.yml | copy custom base16 theme
   copy:
-    src: base16-hopscotch.sh
+    src: base16-luca.sh
     dest: ~/.config/base16-shell/scripts
 
 - name: zsh.yml | copy luca.zsh-theme
@@ -48,7 +48,7 @@
     src: .vimrc
     dest: ~/.vimrc
 
-- name: zsh.yml | update shell for luca
+- name: zsh.yml | update shell for {{ user }}
   user:
-    name: luca
+    name: "{{ user }}"
     shell: /bin/zsh

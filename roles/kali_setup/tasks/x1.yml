@@ -33,7 +33,7 @@
     enabled: yes
 
 - name: x1.yml | disabling memory card reader
-  shell: echo "2-3" | sudo tee /sys/bus/usb/drivers/usb/unbind
+  shell: echo "2-3" | tee /sys/bus/usb/drivers/usb/unbind
 
 - name: x1.yml | installing battery saving pkgs
   apt:
