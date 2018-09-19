@@ -15,7 +15,7 @@
   user:
     name: "{{ user }}"
     uid: 1000
-    shell: /bin/bash
+    shell: /bin/zsh
     group: "{{ user }}"
     groups: sudo
 

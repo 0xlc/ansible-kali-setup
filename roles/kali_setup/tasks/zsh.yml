@@ -2,18 +2,9 @@
 - name: zsh.yml | installing oh-my-zsh
   shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-- name: zsh.yml | cloning zsh-completions
-  git:
-    dest: ~/.oh-my-zsh/custom/plugins/zsh-completions
-    repo: https://github.com/zsh-users/zsh-completions
-
-- name: zsh.yml | installing zsh-completions
-  shell: autoload -U compinit && compinit
-
 - name: zsh.yml | installing zsh-autosuggestions
-  git: 
-    dest: ~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-    repo: https://github.com/zsh-users/zsh-autosuggestions
+  shell: git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  failed_when: false
 
 - name: zsh.yml | installing fzf-zsh
   git:
@@ -47,8 +38,3 @@
   copy:
     src: .vimrc
     dest: ~/.vimrc
-
-- name: zsh.yml | update shell for {{ user }}
-  user:
-    name: "{{ user }}"
-    shell: /bin/zsh

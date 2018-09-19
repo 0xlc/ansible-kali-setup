@@ -1,7 +1,7 @@
 ---
-- name: opt.yml | installing opt repositories
-  git:
-    repo: '{{ item }}'
-    dest: /opt
-    update: yes
-  with_items: "{{ opt_repos }}"
+ - name: opt.yml | git clone repos
+   command: "git clone {{ item }}"
+   args:
+    chdir: /opt
+   with_items: "{{ opt_repos }}"
+   failed_when: false

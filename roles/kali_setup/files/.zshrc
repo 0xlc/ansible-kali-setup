@@ -64,7 +64,6 @@ plugins=(
   history
   history-substring-search
   vim-interaction
-  zsh-completions
   zsh-autosuggestions
 )
 
